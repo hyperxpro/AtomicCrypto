@@ -1,6 +1,9 @@
 # AtomicCrypto
 Java Library To Provide Cryptographic Functions
 
+[![Build Status](https://travis-ci.com/hyperxpro/AtomicCrypto.svg?branch=master)](https://travis-ci.org/hyperxpro/AtomicCrypto)
+
+
 ## Algorithms
 AtomicCrypto uses NSA Suite B Cryptography. This means it uses AES-256-GCM to encrypt data and for asymmetric cryptography it uses ECDH with curve P-256 as default key agreement.
 
