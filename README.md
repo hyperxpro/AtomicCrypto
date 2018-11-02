@@ -9,7 +9,7 @@ You need to [Install Bouncy Castle as a JCE provider](http://www.bouncycastle.or
 You need the [Java Crypto Unlimited Strength Policy files](https://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html).
 
 ## Usage
-### Box (Asymmetric Cryptography)
+### Asymmetric Cryptography
 ```Java
 KeyPair pair1 = KeyPair.generate();
 KeyPair pair2 = KeyPair.generate();
@@ -21,7 +21,7 @@ byte[] Encrypted = SenderBox.encrypt("Hey!".getBytes("UTF-8"));
 byte[] PlainText = ReceiverBox.decrypt(Encrypted);
 ```
 
-### Secret Box (Symmetric Cryptography)
+### Symmetric Cryptography
 ```Java
 SecretKey key = SecretKey.generate();
 SymmetricHub box = new SymmetricHub(key);
