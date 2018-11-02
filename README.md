@@ -1,7 +1,7 @@
 # AtomicCrypto
 Java Library To Provide Cryptographic Functions
 
-[![Build Status](https://travis-ci.com/hyperxpro/AtomicCrypto.svg?branch=master)](https://travis-ci.org/hyperxpro/AtomicCrypto)
+[![Build Status](https://travis-ci.com/hyperxpro/AtomicCrypto.svg?branch=master)](https://travis-ci.com/hyperxpro/AtomicCrypto)
 
 
 ## Algorithms
