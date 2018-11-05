@@ -87,7 +87,7 @@ public class Asymmetric_Symmetric_Cryptography {
             String EncryptedKey = Base64.getEncoder().encodeToString(hybridCryptography.getEncryptedSymmetricKey());
             String SymmetricKey = Base64.getEncoder().encodeToString(key.getBytes());
 
-            System.out.println("Symmetric Key: " + SymmetricKey);
+            System.out.println("Symmetric Key: " + key.getKeyAsBase64());
             System.out.println("Encrypted Key: " + EncryptedKey);
             System.out.println("Encrypted Data: " + Base64.getEncoder().encodeToString(hybridCryptography.getEncryptedData()));
 
