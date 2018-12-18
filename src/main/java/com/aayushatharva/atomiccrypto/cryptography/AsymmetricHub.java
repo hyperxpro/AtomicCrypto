@@ -31,7 +31,6 @@ import org.bouncycastle.jcajce.provider.digest.SHA3;
  * Hub for Asymmetric Cryptography
  *
  * @author Aayush Atharva
- * @timestamp Oct 22, 2018 7:23:54 PM
  */
 public class AsymmetricHub {
 
@@ -103,8 +102,8 @@ public class AsymmetricHub {
      * Get Cipher Text As Base64 Encoding
      *
      * @return Base64 Encoded Cipher Text As String
-     * @throws java.security.NoSuchAlgorithmException
-     * @throws java.security.InvalidKeyException
+     * @throws java.security.NoSuchAlgorithmException Algorithm Error
+     * @throws java.security.InvalidKeyException Invalid Key
      */
     public String getCipherTextAsBase64() throws NoSuchAlgorithmException, InvalidKeyException {
         return symmetricHub.getCipherTextAsBase64();

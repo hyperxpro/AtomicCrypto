@@ -1,7 +1,7 @@
-com\aayushatharva\atomiccrypto\boxes\SecretBox.class
 com\aayushatharva\atomiccrypto\keys\PrivateKey.class
 com\aayushatharva\atomiccrypto\exception\AtomicCryptoException.class
 com\aayushatharva\atomiccrypto\keys\SecretKey.class
-com\aayushatharva\atomiccrypto\boxes\Box.class
+com\aayushatharva\atomiccrypto\cryptography\AsymmetricHub.class
+com\aayushatharva\atomiccrypto\cryptography\SymmetricHub.class
 com\aayushatharva\atomiccrypto\keys\PublicKey.class
 com\aayushatharva\atomiccrypto\keys\KeyPair.class

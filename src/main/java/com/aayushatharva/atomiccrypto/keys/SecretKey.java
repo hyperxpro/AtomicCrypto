@@ -26,7 +26,6 @@ import java.util.Base64;
  * Secret Key For Cryptography
  *
  * @author Aayush Atharva
- * @timestamp Oct 22, 2018 11:08:49 PM
  */
 public class SecretKey {
 

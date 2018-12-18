@@ -29,7 +29,6 @@ import java.util.Base64;
  * Key pair for Asymmetric Cryptography
  * 
  * @author Aayush Atharva
- * @timestamp Oct 22, 2018 1:54:05 PM 
  */
 public class KeyPair {
 

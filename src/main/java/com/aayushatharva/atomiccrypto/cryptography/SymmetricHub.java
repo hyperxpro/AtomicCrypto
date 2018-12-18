@@ -40,7 +40,6 @@ import java.util.Base64;
  * Hub for Symmetric Cryptography
  * 
  * @author Aayush Atharva
- * @timestamp Oct 22, 2018 5:34:19 PM
  */
 public class SymmetricHub {
 

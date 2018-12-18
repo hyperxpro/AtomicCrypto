@@ -18,7 +18,6 @@ package com.aayushatharva.atomiccrypto.exception;
 
 /**
  * @author Aayush Atharva
- * @timestamp Oct 22, 2018 4:03:28 PM
  */
 public class AtomicCryptoException extends Exception {
 

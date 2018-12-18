@@ -27,7 +27,6 @@ import java.security.spec.PKCS8EncodedKeySpec;
  * Asymmetric Private Key
  *
  * @author Aayush Atharva
- * @timestamp Oct 22, 2018 3:54:05 PM
  */
 public class PrivateKey {
 

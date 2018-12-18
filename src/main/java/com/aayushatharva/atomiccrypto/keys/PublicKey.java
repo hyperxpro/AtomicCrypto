@@ -27,7 +27,6 @@ import java.security.spec.X509EncodedKeySpec;
  * Asymmetric Public Key
  * 
  * @author Aayush Atharva
- * @timestamp Oct 22, 2018 10:44:12 PM
  */
 public class PublicKey {
 
