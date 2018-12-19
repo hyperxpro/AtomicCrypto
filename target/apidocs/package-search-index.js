@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.aayushatharva.atomiccrypto.cryptography"},{"l":"com.aayushatharva.atomiccrypto.exception"},{"l":"com.aayushatharva.atomiccrypto.keys"}]
