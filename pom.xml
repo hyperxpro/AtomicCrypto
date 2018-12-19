@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.aayushatharva</groupId>
     <artifactId>AtomicCrypto</artifactId>
-    <version>1.1.0.0</version>
+    <version>1.1.0.1</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,11 +41,10 @@
     </developers>
     
     <scm>
+        <url>https://github.com/hyperxpro/AtomicCrypto</url>
         <connection>scm:git:git://github.com/hyperxpro/AtomicCrypto.git</connection>
-        <developerConnection>scm:git:ssh://github.com:simpligility/ossrh-demo.git</developerConnection>
-        <url>http://github.com/simpligility/ossrh-demo/tree/master</url>
+        <developerConnection>scm:git:git@github.com:hyperxpro/AtomicCrypto.git</developerConnection>
     </scm>
-    
 
 
     <build>
@@ -88,38 +87,23 @@
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
-    
-    <profiles>
-        <profile>
-            <id>release-sign-artifacts</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
     <dependencies>
         <dependency>
