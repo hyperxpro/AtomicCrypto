@@ -17,20 +17,20 @@ You need the [Java Crypto Unlimited Strength Policy files](https://www.oracle.co
 <dependency>
   <groupId>com.aayushatharva</groupId>
   <artifactId>AtomicCrypto</artifactId>
-  <version>1.1.0.0</version>
+  <version>1.1.0.1</version>
 </dependency>
 ```
 
 ### Gradle Groovy DSL
 ```Java
-implementation 'com.aayushatharva:AtomicCrypto:1.1.0.0'
+implementation 'com.aayushatharva:AtomicCrypto:1.1.0.1'
 ```
 
 ## Usage
 ### Asymmetric Cryptography
 ```Java
-KeyPair pair1 = KeyPair.generate();
-KeyPair pair2 = KeyPair.generate();
+KeyPair SenderKeyPair = KeyPair.generate();
+KeyPair ReceiverKeyPair = KeyPair.generate();
 
 AsymmetricHub SenderBox = new AsymmetricHub(SenderKeyPair.getPrivateKey(), ReceiverKeyPair.getPublicKey());
 AsymmetricHub ReceiverBox = new AsymmetricHub(ReceiverKeyPair.getPrivateKey(), SenderKeyPair.getPublicKey());
