@@ -19,7 +19,6 @@ package com.aayushatharva.atomiccrypto.keys;
 import com.aayushatharva.atomiccrypto.exception.AtomicCryptoException;
 
 import java.security.SecureRandom;
-import java.util.Arrays;
 import java.util.Base64;
 
 /**
@@ -32,9 +31,9 @@ public class SecretKey {
     private byte[] key;
 
     /**
-     * Create a secret key from 32 byte (256 bit) key material
+     * Create A Secret Key From 32 Byte (256 bit) Key Material
      *
-     * @param key a secret key
+     * @param key A Secret Key
      */
     public SecretKey(byte[] key) {
         assert key.length == 32;
@@ -42,11 +41,10 @@ public class SecretKey {
     }
 
     /**
-     * Generate a new 32 byte (256 bit) Secret Key With SecureRandom Selected By
-     * Operating System
+     * Generate A New 32 Byte (256 Bit) Secret Key With SecureRandom Chosen By System
      *
-     * @return a secret key
-     * @throws AtomicCryptoException when SecureRandom fails to initialize
+     * @return A Secret Key
+     * @throws AtomicCryptoException When SecureRandom Fails To Initialize
      */
     public static SecretKey generate() throws AtomicCryptoException {
         byte[] key = new byte[32];
@@ -56,12 +54,11 @@ public class SecretKey {
     }
 
     /**
-     * Generate a new 32 byte (256 bit) Secret Key With Defined SecureRandom
-     * Algorithm
-     *
+     * Generate A New 32 Byte (256 Bit) Secret Key With Defined SecureRandom
+     * 
      * @param secureRandom SecureRandom
-     * @return a secret key
-     * @throws AtomicCryptoException when SecureRandom fails to initialize
+     * @return A Secret Key
+     * @throws AtomicCryptoException When SecureRandom Fails To Initialize
      */
     public static SecretKey generate(SecureRandom secureRandom) throws AtomicCryptoException {
         byte[] key = new byte[32];
@@ -71,9 +68,9 @@ public class SecretKey {
     }
 
     /**
-     * Retrieve the raw key material
+     * Retrieve The Secret Key
      *
-     * @return the 32 byte (256 bit) key material
+     * @return The 32 Byte (256 Bit) Secret Key
      */
     public byte[] getBytes() {
         return key.clone();
@@ -82,29 +79,10 @@ public class SecretKey {
     /**
      * Get Secret Key In Base64 Encoding
      *
-     * @return Base64 Encoded Secret Key As String
+     * @return Base64 Encoded Secret Key
      */
     public String getKeyAsBase64() {
         return Base64.getEncoder().encodeToString(getBytes());
     }
 
-    @Override
-    public boolean equals(Object o) {
-
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        SecretKey that = (SecretKey) o;
-
-        return Arrays.equals(key, that.key);
-    }
-
-    @Override
-    public int hashCode() {
-        return Arrays.hashCode(key);
-    }
 }

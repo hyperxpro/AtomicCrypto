@@ -38,7 +38,7 @@ import java.util.Base64;
 
 /**
  * Hub for Symmetric Cryptography
- * 
+ *
  * @author Aayush Atharva
  */
 public class SymmetricHub {
@@ -48,32 +48,31 @@ public class SymmetricHub {
     private byte[] CipherText;
 
     /**
-     * Create a secret box using the provided secret key.
+     * Create SymmetricHub Using The Provided Secret Key
      *
-     * @param key secret key to encrypt with
+     * @param Key Secret Key
      */
-    public SymmetricHub(SecretKey key) {
-        this.key = key.getBytes();
+    public SymmetricHub(SecretKey Key) {
+        this.key = Key.getBytes();
     }
 
     /**
-     * Create a secret box using the provided secret key.
+     * Create SymmetricHub Using The Provided Secret Key
      *
-     * @param key secret key to encrypt with
+     * @param Key Secret Key
      */
-    public SymmetricHub(byte[] key) {
-        this.key = key;
+    public SymmetricHub(byte[] Key) {
+        this.key = Key;
     }
 
     /**
-     * Encrypt the given Plain Text With SecureRandom Selected By Operating
-     * System
+     * Encrypt The Given Data With SecureRandom Chosen By System
      *
-     * @param plaintext value to encrypt
-     * @return the encrypted value
-     * @throws AtomicCryptoException when an error occurs during encryption
+     * @param Data Data To Encrypt
+     * @return Encrypted Data
+     * @throws AtomicCryptoException When An Error Occurs During Encryption
      */
-    public byte[] encrypt(byte[] plaintext) throws AtomicCryptoException {
+    public byte[] encrypt(byte[] Data) throws AtomicCryptoException {
         try {
 
             byte[] nonce = new byte[12];
@@ -85,7 +84,7 @@ public class SymmetricHub {
             ByteArrayOutputStream output = new ByteArrayOutputStream();
 
             CipherOutputStream cipherStream = new CipherOutputStream(output, cipher);
-            cipherStream.write(plaintext);
+            cipherStream.write(Data);
             cipherStream.close();
 
             byte[] ciphertext = output.toByteArray();
@@ -100,14 +99,14 @@ public class SymmetricHub {
     }
 
     /**
-     * Encrypt the given Plain Text with Defined SecureRandom Algorithm
+     * Encrypt The Given Data With Defined SecureRandom
      *
-     * @param plaintext Value To Encrypt
-     * @param secureRandom SecureRandom
-     * @return the encrypted value
-     * @throws AtomicCryptoException when an error occurs during encryption
+     * @param Data Data To Encrypt
+     * @param secureRandom SecureRandom To Use For Encryption
+     * @return Encrypted Data
+     * @throws AtomicCryptoException When An Error Occurs During Encryption
      */
-    public byte[] encrypt(byte[] plaintext, SecureRandom secureRandom) throws AtomicCryptoException {
+    public byte[] encrypt(byte[] Data, SecureRandom secureRandom) throws AtomicCryptoException {
         try {
             byte[] nonce = new byte[12];
             SecureRandom random = secureRandom;
@@ -117,7 +116,7 @@ public class SymmetricHub {
             cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(this.key, "AES"), new IvParameterSpec(nonce));
             ByteArrayOutputStream output = new ByteArrayOutputStream();
             CipherOutputStream cipherStream = new CipherOutputStream(output, cipher);
-            cipherStream.write(plaintext);
+            cipherStream.write(Data);
             cipherStream.close();
 
             byte[] ciphertext = output.toByteArray();
@@ -132,19 +131,19 @@ public class SymmetricHub {
     }
 
     /**
-     * Decrypt the given Cipher Text
+     * Decrypt The Given Cipher Data
      *
-     * @param ciphertext value to decrypt
-     * @return decrypted value
+     * @param Data Data To Decrypt
+     * @return Decrypted Data
      * @throws AtomicCryptoException when an error occurs during encryption
      */
-    public byte[] decrypt(byte[] ciphertext) throws AtomicCryptoException {
+    public byte[] decrypt(byte[] Data) throws AtomicCryptoException {
         try {
             byte[] nonce = new byte[12];
-            System.arraycopy(ciphertext, 0, nonce, 0, nonce.length);
+            System.arraycopy(Data, 0, nonce, 0, nonce.length);
 
-            byte[] input = new byte[ciphertext.length - nonce.length];
-            System.arraycopy(ciphertext, nonce.length, input, 0, input.length);
+            byte[] input = new byte[Data.length - nonce.length];
+            System.arraycopy(Data, nonce.length, input, 0, input.length);
 
             Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding", "BC");
             cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(this.key, "AES"), new IvParameterSpec(nonce));
@@ -155,6 +154,15 @@ public class SymmetricHub {
         } catch (NoSuchAlgorithmException | InvalidKeyException | InvalidAlgorithmParameterException | NoSuchPaddingException | NoSuchProviderException | IOException e) {
             throw new AtomicCryptoException(e);
         }
+    }
+
+    /**
+     * Get Cipher Text As Base64 Encoding
+     *
+     * @return Base64 Encoded Cipher Data
+     */
+    public byte[] getCipherDataAsBase64() {
+        return Base64.getEncoder().encode(CipherText);
     }
 
     private byte[] readOutput(InputStream inputStream) throws IOException {
@@ -171,15 +179,6 @@ public class SymmetricHub {
         }
 
         return outputStream.toByteArray();
-    }
-
-    /**
-     * Get Cipher Text As Base64 Encoding
-     *
-     * @return Base64 Encoded Cipher Text As String
-     */
-    public String getCipherTextAsBase64() {
-        return Base64.getEncoder().encodeToString(CipherText);
     }
 
 }

@@ -20,6 +20,7 @@ import com.aayushatharva.atomiccrypto.exception.AtomicCryptoException;
 
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 
@@ -37,54 +38,36 @@ public class PrivateKey {
     }
 
     /**
-     * Create a private key from DER encoded data
+     * Create A Private Key From DER Encoded Data
      *
-     * @param data the DER encoded data
-     * @throws AtomicCryptoException when the private key cannot be loaded
+     * @param Data DER Encoded Data
+     * @throws AtomicCryptoException When The Private Key Cannot Be Loaded
      */
-    public PrivateKey(byte[] data) throws AtomicCryptoException {
+    public PrivateKey(byte[] Data) throws AtomicCryptoException {
         try {
-            KeyFactory keyFactory = KeyFactory.getInstance("ECDH");
-            this.privateKey = keyFactory.generatePrivate(new PKCS8EncodedKeySpec(data));
-        } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
+            KeyFactory keyFactory = KeyFactory.getInstance("ECDH", "BC");
+            this.privateKey = keyFactory.generatePrivate(new PKCS8EncodedKeySpec(Data));
+        } catch (InvalidKeySpecException | NoSuchAlgorithmException | NoSuchProviderException e) {
             throw new AtomicCryptoException(e);
         }
     }
 
     /**
-     * Retrieve underlying private key
+     * Retrieve Underlying Private Key
      *
-     * @return the private key
+     * @return Private Key
      */
     public java.security.PrivateKey getKey() {
         return privateKey;
     }
 
     /**
-     * Retrieve DER encoded form of the key
+     * Retrieve DER Encoded Form Of The Key
      *
-     * @return the DER encoded data
+     * @return DER Encoded Key Data
      */
     public byte[] getBytes() {
         return this.privateKey.getEncoded();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        PrivateKey that = (PrivateKey) o;
-
-        return privateKey.equals(that.privateKey);
-    }
-
-    @Override
-    public int hashCode() {
-        return privateKey.hashCode();
-    }
 }

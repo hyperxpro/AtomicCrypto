@@ -24,6 +24,7 @@ import com.aayushatharva.atomiccrypto.keys.SecretKey;
 import javax.crypto.KeyAgreement;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 import org.bouncycastle.jcajce.provider.digest.SHA3;
 
@@ -34,6 +35,7 @@ import org.bouncycastle.jcajce.provider.digest.SHA3;
  */
 public class AsymmetricHub {
 
+    // Keys
     private final PrivateKey privateKey;
     private final PublicKey publicKey;
 
@@ -51,48 +53,48 @@ public class AsymmetricHub {
     }
 
     /**
-     * Encrypt the given plaintext
+     * Encrypt The Given Data With SecureRandom Chosen By System
      *
-     * @param plaintext value to encrypt
-     * @return the encrypted value
-     * @throws AtomicCryptoException when an error occurs during encryption
+     * @param Data Data To Encrypt
+     * @return Encrypted Data
+     * @throws AtomicCryptoException When An Error Occurs During Encryption
      */
-    public byte[] encrypt(byte[] plaintext) throws AtomicCryptoException {
+    public byte[] encrypt(byte[] Data) throws Exception {
         try {
-            symmetricHub = this.deriveSecretBox();
-            return symmetricHub.encrypt(plaintext);
+            symmetricHub = this.getSecret();
+            return symmetricHub.encrypt(Data);
         } catch (NoSuchAlgorithmException | InvalidKeyException e) {
             throw new AtomicCryptoException(e);
         }
     }
 
     /**
-     * Encrypt the given plaintext
+     * Encrypt The Given Data With Defined SecureRandom
      *
-     * @param plaintext Value To Encrypt
-     * @param secureRandom Secure Random
-     * @return the encrypted value
-     * @throws AtomicCryptoException when an error occurs during encryption
+     * @param Data Data To Encrypt
+     * @param secureRandom SecureRandom To Use For Encryption
+     * @return Encrypted Data
+     * @throws AtomicCryptoException When An Error Occurs During Encryption
      */
-    public byte[] encrypt(byte[] plaintext, SecureRandom secureRandom) throws AtomicCryptoException {
+    public byte[] encrypt(byte[] Data, SecureRandom secureRandom) throws Exception {
         try {
-            symmetricHub = this.deriveSecretBox();
-            return symmetricHub.encrypt(plaintext, secureRandom);
+            symmetricHub = this.getSecret();
+            return symmetricHub.encrypt(Data, secureRandom);
         } catch (NoSuchAlgorithmException | InvalidKeyException e) {
             throw new AtomicCryptoException(e);
         }
     }
 
     /**
-     * Decrypt the given Cipher Text
+     * Decrypt The Given Cipher Data
      *
-     * @param ciphertext value to decrypt
-     * @return decrypted value
-     * @throws AtomicCryptoException when an error occurs during encryption
+     * @param Data Data To Decrypt
+     * @return Decrypted Data
+     * @throws AtomicCryptoException When An Error Occurs During Encryption
      */
-    public byte[] decrypt(byte[] ciphertext) throws AtomicCryptoException {
+    public byte[] decrypt(byte[] Data) throws Exception {
         try {
-            return this.deriveSecretBox().decrypt(ciphertext);
+            return this.getSecret().decrypt(Data);
         } catch (NoSuchAlgorithmException | InvalidKeyException e) {
             throw new AtomicCryptoException(e);
         }
@@ -101,22 +103,20 @@ public class AsymmetricHub {
     /**
      * Get Cipher Text As Base64 Encoding
      *
-     * @return Base64 Encoded Cipher Text As String
-     * @throws java.security.NoSuchAlgorithmException Algorithm Error
-     * @throws java.security.InvalidKeyException Invalid Key
+     * @return Base64 Encoded Cipher Data
      */
-    public String getCipherTextAsBase64() throws NoSuchAlgorithmException, InvalidKeyException {
-        return symmetricHub.getCipherTextAsBase64();
+    public byte[] getCipherDataAsBase64() {
+        return symmetricHub.getCipherDataAsBase64();
     }
 
-    private SymmetricHub deriveSecretBox() throws NoSuchAlgorithmException, InvalidKeyException {
-        KeyAgreement keyAgreement = KeyAgreement.getInstance("ECDH");
+    private SymmetricHub getSecret() throws NoSuchAlgorithmException, InvalidKeyException, NoSuchProviderException {
+        KeyAgreement keyAgreement = KeyAgreement.getInstance("ECDH", "BC");
         keyAgreement.init(this.privateKey.getKey());
         keyAgreement.doPhase(this.publicKey.getKey(), true);
-        byte[] z = keyAgreement.generateSecret();
+        byte[] secret = keyAgreement.generateSecret();
 
         SHA3.DigestSHA3 sha3256 = new SHA3.Digest256();
-        byte[] key = sha3256.digest(z);
+        byte[] key = sha3256.digest(secret);
         return new SymmetricHub(new SecretKey(key));
     }
 

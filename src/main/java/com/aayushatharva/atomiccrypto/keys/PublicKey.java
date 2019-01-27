@@ -20,6 +20,7 @@ import com.aayushatharva.atomiccrypto.exception.AtomicCryptoException;
 
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 
@@ -36,17 +37,17 @@ public class PublicKey {
         this.publicKey = publicKey;
     }
 
-    /**
-     * Create a public key from DER encoded data
+     /**
+     * Create A Public Key From DER Encoded Data
      *
-     * @param data the DER encoded data
-     * @throws AtomicCryptoException when the private key cannot be loaded
+     * @param Data DER Encoded Data
+     * @throws AtomicCryptoException When The Public Key Cannot Be Loaded
      */
-    public PublicKey(byte[] data) throws AtomicCryptoException {
+    public PublicKey(byte[] Data) throws AtomicCryptoException {
         try {
-            KeyFactory keyFactory = KeyFactory.getInstance("ECDH");
-            this.publicKey = keyFactory.generatePublic(new X509EncodedKeySpec(data));
-        } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
+            KeyFactory keyFactory = KeyFactory.getInstance("ECDH", "BC");
+            this.publicKey = keyFactory.generatePublic(new X509EncodedKeySpec(Data));
+        } catch (InvalidKeySpecException | NoSuchAlgorithmException | NoSuchProviderException e) {
             throw new AtomicCryptoException(e);
         }
     }
@@ -61,30 +62,12 @@ public class PublicKey {
     }
 
     /**
-     * Retrieve DER encoded form of the key
+     * Retrieve DER Encoded Form Of The Key
      *
-     * @return the DER encoded data
+     * @return DER Encoded Key Data
      */
     public byte[] getBytes() {
         return this.publicKey.getEncoded();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        PublicKey that = (PublicKey) o;
-
-        return this.publicKey.equals(that.publicKey);
-    }
-
-    @Override
-    public int hashCode() {
-        return publicKey.hashCode();
-    }
 }

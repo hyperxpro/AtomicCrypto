@@ -147,19 +147,19 @@ public class KeyPair {
     /**
      * Get Public Key Base64 Encoded
      *
-     * @return The Base64 Encoded Public Key
+     * @return Base64 Encoded Public Key
      */
-    public String getPublicKeyAsBase64() {
-        return Base64.getEncoder().encodeToString(getPublicKey().getBytes());
+    public byte[] getPublicKeyAsBase64() {
+        return Base64.getEncoder().encode(getPublicKey().getBytes());
     }
 
     /**
      * Get Private Key Base64 Encoded
      *
-     * @return The Base64 Encoded Private Key
+     * @return Base64 Encoded Private Key
      */
-    public String getPrivateKeyAsBase64() {
-        return Base64.getEncoder().encodeToString(getPrivateKey().getBytes());
+    public byte[] getPrivateKeyAsBase64() {
+        return Base64.getEncoder().encode(getPrivateKey().getBytes());
     }
 
 }
