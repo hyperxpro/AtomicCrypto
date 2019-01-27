@@ -1,4 +1,4 @@
 language: java
 jdk:
 - oraclejdk11
-install: mvn install -DskipTests -Dgpg.skip
+install: mvn install -DskipTests -Dgpg.skip -Dmaven.javadoc.skip=true
