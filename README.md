@@ -17,13 +17,13 @@ You need the [Java Crypto Unlimited Strength Policy files](https://www.oracle.co
 <dependency>
   <groupId>com.aayushatharva</groupId>
   <artifactId>AtomicCrypto</artifactId>
-  <version>1.1.0.1</version>
+  <version>1.2.1.0</version>
 </dependency>
 ```
 
 ### Gradle Groovy DSL
 ```Java
-implementation 'com.aayushatharva:AtomicCrypto:1.1.0.1'
+implementation 'com.aayushatharva:AtomicCrypto:1.2.1.0'
 ```
 
 ## Usage
