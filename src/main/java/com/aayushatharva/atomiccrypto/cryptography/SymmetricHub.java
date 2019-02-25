@@ -171,6 +171,7 @@ public class SymmetricHub {
 
         while (true) {
             int length = inputStream.read(buffer);
+            
             if (length == -1) {
                 break;
             }

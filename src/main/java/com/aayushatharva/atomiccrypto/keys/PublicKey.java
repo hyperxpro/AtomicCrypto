@@ -53,9 +53,9 @@ public class PublicKey {
     }
 
     /**
-     * Retrieve underlying public key
+     * Retrieve Underlying Public Key
      *
-     * @return the public key
+     * @return Public Key
      */
     public java.security.PublicKey getKey() {
         return publicKey;

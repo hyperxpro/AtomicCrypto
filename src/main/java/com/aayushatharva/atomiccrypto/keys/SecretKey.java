@@ -81,8 +81,8 @@ public class SecretKey {
      *
      * @return Base64 Encoded Secret Key
      */
-    public String getKeyAsBase64() {
-        return Base64.getEncoder().encodeToString(getBytes());
+    public byte[] getKeyAsBase64() {
+        return Base64.getEncoder().encode(getBytes());
     }
 
 }

@@ -26,6 +26,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
+
 import org.bouncycastle.jcajce.provider.digest.SHA3;
 
 /**
@@ -115,8 +116,8 @@ public class AsymmetricHub {
         keyAgreement.doPhase(this.publicKey.getKey(), true);
         byte[] secret = keyAgreement.generateSecret();
 
-        SHA3.DigestSHA3 sha3256 = new SHA3.Digest256();
-        byte[] key = sha3256.digest(secret);
+        SHA3.DigestSHA3 digestSHA3_256 = new SHA3.Digest256();
+        byte[] key = digestSHA3_256.digest(secret);
         return new SymmetricHub(new SecretKey(key));
     }
 
