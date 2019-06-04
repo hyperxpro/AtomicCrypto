@@ -1,7 +1,10 @@
-# AtomicCrypto
+# AtomicCrypto [DISCONTINUTED]
+# PROJECT DISCONTINUTED AND STOPPED
 Java Library To Provide Cryptographic Functions
 
-[![Build Status](https://travis-ci.com/hyperxpro/AtomicCrypto.svg?branch=master)](https://travis-ci.com/hyperxpro/AtomicCrypto)
+
+## LIBRARY INSPIRED FROM: https://github.com/jtdowney/chloride/
+
 
 
 ## Algorithms
